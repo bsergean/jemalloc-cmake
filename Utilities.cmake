@@ -728,7 +728,11 @@ set(SRC "${WORK_FOLDER}/getpagesize.c")
 set(COMPILE_OUTPUT_FILE "${WORK_FOLDER}/getpagesize.log")
 
 file(WRITE ${SRC}
+"#ifdef _WIN32\n"
 "#include <windows.h>\n"
+"#else\n"
+"#include <unistd.h>\n"
+"#endif\n"
 "#include <stdio.h>\n"
 "int main(int argc, const char** argv) {\n"
 "int result;\n"
